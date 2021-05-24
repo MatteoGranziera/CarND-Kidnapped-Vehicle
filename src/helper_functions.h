@@ -12,9 +12,12 @@
 #include <math.h>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <string>
 #include <vector>
 #include "map.h"
+
+using std::vector;
 
 // for portability of M_PI (Vis Studio, MinGW, etc.)
 #ifndef M_PI
@@ -56,6 +59,24 @@ struct LandmarkObs {
  */
 inline double dist(double x1, double y1, double x2, double y2) {
   return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+
+/**
+ * Find landmark by id.
+ * @param (v) vector of landmarks obs
+ * @output landmark
+ */
+inline LandmarkObs findLandmark(vector<LandmarkObs> &v, int id) {
+  int i=0;
+
+  while(i<v.size()){
+    if(v[i].id == id){
+      break;
+    }
+    i++;
+  }
+
+  return v[i];
 }
 
 /**
